@@ -1,0 +1,116 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link href="~/Content/StyleSheet3.css" rel="stylesheet" />
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <div class="left-side-bar">
+            <div class="profile">
+                <div class="avatar">
+
+                </div>
+                <div class="editprofile">
+                    <h4>Nguyễn Văn A</h4>
+                    <p> Sửa Hồ Sơ</p>
+                </div>
+            </div>
+            <div class="left-menu">
+                <ul>
+                    <a href="#">
+                    <li>Thông Báo</li></a>
+                    <a href="#">
+                    <li>Tài Khoản Của Tôi</li></a>
+                    <a href="#">
+                    <li>Đơn Mua</li></a>
+                    <a href="#">
+                    <li>Voucher</li></a>
+                </ul>
+            </div>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+        <div class="radio-tab">
+            <input type="radio" name="Tabs" id="TatCa" checked>
+            <label for="TatCa" class="tab-label">Tất Cả</label>
+            <input type="radio" name="Tabs" id="XacNhan">
+            <label for="XacNhan" class="tab-label">Xác Nhận</label>
+            <input type="radio" name="Tabs" id="LayHang">
+            <label for="LayHang" class="tab-label">Lấy Hàng</label>
+            <input type="radio" name="Tabs" id="DangGiao">
+            <label for="DangGiao" class="tab-label">Đang Giao</label>
+            <input type="radio" name="Tabs" id="DaGiao">
+            <label for="DaGiao" class="tab-label">Đã Giao</label>
+            <input type="radio" name="Tabs" id="DaHuy">
+            <label for="DaHuy" class="tab-label">Đã Hủy</label>
+            <input type="radio" name="Tabs" id="DanhGia">
+            <label for="DanhGia" class="tab-label">Đánh Giá</label>
+            <div class="Tatca-content content">
+                <div class="produce">
+                    <div style="justify-items: center; align-content: center;">
+                        <input type="checkbox" id="produce1">
+                    </div>
+                    <div>
+                        <img src="https://cdn1.fahasa.com/media/catalog/product//z/6/z6923363964831_c6d0801298a97c228cf13c4609936b6a-1_1.jpg">
+                    </div>
+                    <div>
+                        <p>Tủ Sách Thanh Niên - Mãi Mãi Tuổi Hai Mươi - Nhật Ký Thời Chiến Việt Nam - Bìa Cứng - Độc Quyền Fahasa</p>
+                        <b>114.500 đ</b>
+                    </div>
+                    <div class="Count">
+                        <input style="text-align: center;" type="number" value="1" min="1" max="99" readonly>
+                    </div>
+                    <div class="price">
+                        <b>114.500 đ</b>
+                    </div>
+                </div>
+            </div>
+            <div class="Xacnhan-content content">
+                2
+            </div>
+            <div class="DaGiao-content content">
+                <div class="produce">
+                    <div style="justify-items: center; align-content: center;">
+                        <input type="checkbox" id="produce1">
+                    </div>
+                    <div>
+                        <img src="https://cdn1.fahasa.com/media/catalog/product//z/6/z6923363964831_c6d0801298a97c228cf13c4609936b6a-1_1.jpg">
+                    </div>
+                    <div>
+                        <p>Tủ Sách Thanh Niên - Mãi Mãi Tuổi Hai Mươi - Nhật Ký Thời Chiến Việt Nam - Bìa Cứng - Độc Quyền Fahasa</p>
+                        <b>114.500 đ</b>
+                    </div>
+                    <div class="Count">
+                        <input style="text-align: center;" type="number" value="1" min="1" max="99" readonly>
+                    </div>
+                    <div class="price">
+                        <b>114.500 đ</b>
+                    </div>
+                    <div class="BuyAgain">
+                        <button>Mua Lần Nữa</button>
+                    </div>
+                </div>
+            </div>
+            <div class="Layhang-content content">
+                3
+            </div>
+            <div class="DangGiao-content content">
+                4
+            </div>
+            <div class="Dahuy-content content">
+            </div>
+            <div class="Danhgia-content content">
+
+            </div>
+
+        </div>
+    </div>
+    </div>
+</body>
+</html>

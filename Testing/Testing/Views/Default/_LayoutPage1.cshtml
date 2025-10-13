@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>@ViewBag.Title - Tiệm Sách Passion!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</head>
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="logo">
+                <a href="#">📚 Tiệm Sách Passion!</a>
+            </div>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#home" class="nav-link active">Trang Chủ</a></li>
+                    <li><a href="#product" class="nav-link active">Sản phẩm</a></li>
+                    <li><a href="#about" class="nav-link">Giới Thiệu</a></li>
+                    <li><a href="#contact" class="nav-link">Liên Hệ</a></li>
+                    <li><a href="#signin" class="nav-link">Đăng Nhập/Đăng Ký</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    @RenderBody()
+
+    <!-- Nội dung chính -->
+<main class="site-content">
+    <!-- Giỏ hàng -->
+    <div id="cart" class="page-content" style="display:none;">
+        <div class="cart-container">
+            @if (Model == null || !Model.Any())
+            {
+                <div class="cart-empty text-center">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" alt="Empty Cart" />
+                    <p class="text-muted mt-3">Chưa có sản phẩm trong giỏ hàng của bạn.</p>
+                    <a href="#product" class="btn btn-danger nav-link">MUA SẮM NGAY</a>
+                </div>
+            }
+            else
+            {
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover align-middle">
+                        <thead class="table-dark text-center">
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="@item.Image" alt="@item.Name" class="cart-img" />
+                                    </td>
+                                    <td class="fw-bold">@item.Name</td>
+                                    <td>@item.Price.ToString("N0") ₫</td>
+                                    <td class="text-center">@item.Quantity</td>
+                                    <td class="text-danger fw-bold">
+                                        @(item.Price * item.Quantity).ToString("N0") ₫
+                                    </td>
+                                    <td class="text-center">
+                                        <form asp-action="RemoveFromCart" asp-route-id="@item.Id" method="post">
+                                            <button type="submit" class="btn btn-sm btn-outline-danger">Xóa</button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <div class="cart-total text-end">
+                    <h4>
+                        Tổng cộng:
+                        <span class="text-danger fw-bold">
+                        </span>
+                    </h4>
+                    <a href="/Checkout/Index" class="btn btn-success mt-3">Thanh toán ngay</a>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="container">
+        <!-- Trang chủ -->
+        <div id="home" class="page-content" style="display:none;">
+
+            <!-- Banner -->
+            <div class="banner">
+                <img src="https://cdn1.fahasa.com/media/wysiwyg/Thang-10-2025/Alphabooks_Resize1263x60.png" alt="Banner">
+            </div>
+
+            <!-- Thanh logo + tìm kiếm + menu -->
+            <div class="Container">
+                <div class="logo">
+                    <img src="../../Hình/logo.png" alt="Logo" />
+                </div>
+
+                <div class="Search">
+                    <input type="text" placeholder="Bạn muốn mua gì?">
+                    <button>Tìm Kiếm</button>
+                </div>
+
+                <div class="Menu">
+                    <a href="#" class="item"><i class="fa-solid fa-bell"></i><span>Thông Báo</span></a>
+                    <a href="#cart" class="item nav-link">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Giỏ Hàng</span></a>
+                    <a href="#" class="item"><i class="fa-solid fa-user"></i><span>Tài Khoản</span></a>
+                </div>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="left_sidebar">
+                <a href="#"><h3>Sách trong nước</h3></a>
+                <a href="#"><h3>Sách nước ngoài</h3></a>
+                <a href="#"><h3>Truyện Tranh</h3></a>
+                <a href="#"><h3>Manga</h3></a>
+                <a href="#"><h3>Light Novel</h3></a>
+                <a href="#"><h3>Sách Tâm Lý</h3></a>
+                <a href="#"><h3>Sách Giáo Khoa</h3></a>
+            </div>
+
+            <!-- Nội dung chính -->
+            <div class="content">
+                <div class="top-content">
+                    <div class="left">
+                        <div class="frame">
+                            <div class="slider">
+                                <div class="slide slide1"></div>
+                                <div class="slide slide2"></div>
+                                <div class="slide slide3"></div>
+                                <div class="slide slide1"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="right">
+                        <div class="box box1"></div>
+                        <div class="box box2"></div>
+                    </div>
+                </div>
+
+                <div class="bot-content">
+                    <div class="bot-content-item">1</div>
+                    <div class="bot-content-item">2</div>
+                    <div class="bot-content-item">3</div>
+                    <div class="bot-content-item">4</div>
+                    <div class="bot-content-item">5</div>
+                    <div class="bot-content-item">6</div>
+                </div>
+
+                <div class="libary"></div>
+                <div class="blank"></div>
+            </div>
+
+            <div style="clear: both"></div>
+        </div>
+        <!-- Giới thiệu -->
+        <div id="about" class="page-content" style="display: none;">
+            <div class="about-text">
+                <p>Xin chào bạn, người yêu sách!</p>
+                <p>Tiệm Sách Passion không chỉ là một trang web bán sách. Giữa dòng đời vội vã, có một góc nhỏ bình yên nơi những tâm hồn đồng điệu tìm về, nơi mùi giấy mới và hương cà phê dịu nhẹ quyện vào nhau, tạo nên một bản giao hưởng của sự tĩnh lặng. Đó chính là Passion.</p>
+                <p>Mình tin rằng mỗi cuốn sách là một thế giới, và mình muốn tạo ra một góc nhỏ ấm cúng trên Internet để mọi người có thể tìm thấy thế giới của riêng mình. Tên gọi "Tiệm Sách Passion" cũng xuất phát từ mong muốn đó - một nơi mộc mạc, gần gũi và bền vững với thời gian, giống như những cuốn sách hay.</p>
+                <p>Cảm ơn bạn đã ghé thăm. Chúc bạn tìm được những cuốn sách ưng ý!</p>
+            </div>
+        </div>
+
+        <!-- Liên hệ -->
+        <div id="contact" class="page-content" style="display:none;">
+            <h1>Gửi Lời Nhắn Cho Chúng Tớ Nhé!</h1>
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name">Họ và Tên:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Lời nhắn:</label>
+                    <textarea id="message" name="message" rows="6" required></textarea>
+                </div>
+                <button type="submit" class="btn-submit">Gửi Đi</button>
+            </form>
+
+            <!-- Thông tin liên hệ -->
+            <div class="contact-info">
+                <h3>Thông tin liên hệ</h3>
+                <p><strong>Địa chỉ:</strong> 828 Đường Sách Nhỏ, Phường Diên, TP. Hồ Chí Minh</p>
+                <p><strong>Email:</strong> XinChao@Passion.com</p>
+                <p><strong>Điện thoại:</strong> 0123.456.789</p>
+            </div>
+        </div>
+
+        <!-- Đăng nhập / Đăng ký -->
+        <div id="signin" class="page-content" style="display:none;">
+            <div class="form-container">
+                <div class="form-toggle">
+                    <button id="login-toggle" class="active">Đăng nhập</button>
+                    <button id="register-toggle">Đăng ký</button>
+                </div>
+
+                <!-- Form Đăng nhập -->
+                <form id="login-form" class="form-content active">
+                    <h2>Chào mừng trở lại Passion!</h2>
+                    <div class="input-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" name="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password">Mật khẩu</label>
+                        <input type="password" id="login-password" name="Password" required>
+                    </div>
+                    <button type="submit" class="btn">Đăng nhập</button>
+                </form>
+
+                <!-- Form Đăng ký -->
+                <form id="register-form" class="form-content">
+                    <h2>Tạo tài khoản mới</h2>
+                    <div class="input-group">
+                        <label for="register-name">Họ và tên</label>
+                        <input type="text" id="register-name" name="FullName" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" name="Email" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="register-password">Mật khẩu</label>
+                        <input type="password" id="register-password" name="Password" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="confirm-password">Xác nhận mật khẩu</label>
+                        <input type="password" id="confirm-password" name="ConfirmPassword" required>
+                    </div>
+                    <button type="submit" class="btn">Đăng ký</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; Tiệm Sách Passion!</p>
+        </div>
+    </footer>
+
+    <!-- Script -->
+    <script>document.addEventListener('DOMContentLoaded', function () {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const pageContents = document.querySelectorAll('.page-content');
+
+            function showPage(pageId) {
+                pageContents.forEach(content => content.style.display = 'none');
+                const pageToShow = document.getElementById(pageId);
+                if (pageToShow) pageToShow.style.display = 'block';
+            }
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (event) {
+                    event.preventDefault();
+                    const pageId = link.getAttribute('href').substring(1);
+                    showPage(pageId);
+                    navLinks.forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                });
+            });
+
+            // Toggle login/register
+            const loginToggle = document.getElementById('login-toggle');
+            const registerToggle = document.getElementById('register-toggle');
+            const loginForm = document.getElementById('login-form');
+            const registerForm = document.getElementById('register-form');
+
+            if (loginToggle && registerToggle) {
+                loginToggle.addEventListener('click', () => {
+                    loginToggle.classList.add('active');
+                    registerToggle.classList.remove('active');
+                    loginForm.classList.add('active');
+                    registerForm.classList.remove('active');
+                });
+
+                registerToggle.addEventListener('click', () => {
+                    registerToggle.classList.add('active');
+                    loginToggle.classList.remove('active');
+                    registerForm.classList.add('active');
+                    loginForm.classList.remove('active');
+                });
+            }
+        });</script>
+</body>
+</html>

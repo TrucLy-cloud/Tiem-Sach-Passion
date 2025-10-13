@@ -1,0 +1,107 @@
+﻿body {
+}
+
+.Cart {
+    gap: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+}
+
+.top-bar {
+    border-radius: 8px;
+    height: 40px;
+    width: 100%;
+    background-color: aliceblue;
+    display: grid;
+    grid-template-columns: 150px 1fr 170px 150px;
+    background-color: white;
+    height: max-content;
+    border-radius: 8px;
+}
+
+.produce {
+    display: grid;
+    grid-template-columns: 25px 100px 1fr 120px 120px 60px;
+    width: 100%;
+    background-color: white;
+    height: max-content;
+    border-radius: 8px;
+}
+
+    .produce img {
+        width: 100px;
+        height: auto;
+    }
+
+.Count {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+    .Count input {
+        width: 30px;
+    }
+/* Ẩn mũi tên tăng/giảm trên Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.price {
+    text-align: center;
+    justify-items: center;
+    align-content: center;
+    color: red;
+}
+
+.Container-top-bar {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    width: 40%;
+}
+
+.paid {
+    width: 18%;
+    height: max-content;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.Voucher {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+    .Voucher span {
+        align-items: center;
+    }
+
+.btnPaid {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: red;
+    border-radius: 5px;
+    height: 30px;
+}
+
+    .btnPaid button {
+        border: none;
+        background-color: red;
+        color: white;
+        font-size: 20px;
+        font-family: system-ui;
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        border-radius: 8px;
+    }
