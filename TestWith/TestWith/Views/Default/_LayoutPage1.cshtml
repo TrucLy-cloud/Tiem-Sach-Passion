@@ -1,0 +1,493 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Tiệm Sách Passion!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="~/Content/StyleSheet1.css" rel="stylesheet" />
+</head>
+    <body>
+        <header class="site-header">
+            <div class="container">
+                <div class="logo">
+                    <a href="#home" class="nav-link">📚 Passion</a>
+                </div>
+
+                <div class="header-search">
+                    <input type="text" placeholder="Bạn muốn tìm sách gì?">
+                    <button aria-label="Tìm kiếm"><i class="fa-solid fa-magnifying-glass"></i></button>
+                </div>
+
+                <nav class="main-nav">
+                    <ul>
+                        <li><a href="#home" class="nav-link">Trang Chủ</a></li>
+                        <li><a href="#product" class="nav-link">Sản Phẩm</a></li>
+                        <li><a href="#about" class="nav-link">Giới Thiệu</a></li>
+                        <li><a href="#contact" class="nav-link">Liên Hệ</a></li>
+                    </ul>
+                </nav>
+
+                <div class="nav-actions">
+                    <a href="#cart" class="nav-link nav-icon" aria-label="Giỏ hàng">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span id="cart-count" class="cart-badge">0</span>
+                    </a>
+                    <a href="#signin" class="nav-link nav-icon" aria-label="Tài khoản">
+                        <i class="fa-solid fa-user"></i>
+                    </a>
+                </div>
+            </div>
+        </header>
+@RenderBody()
+        <main class="site-content">
+            <div class="container">
+                <div id="home" class="page-content">
+                    <div class="banner">
+                        <img src="https://cdn1.fahasa.com/media/wysiwyg/Thang-10-2025/Alphabooks_Resize1263x60.png" alt="Banner">
+                    </div>
+                    <div class="home-layout">
+                        <div class="left_sidebar">
+                            <a href="#"><h3>Sách trong nước</h3></a>
+                            <a href="#"><h3>Sách nước ngoài</h3></a>
+                            <a href="#"><h3>Truyện Tranh</h3></a>
+                            <a href="#"><h3>Manga - Comic</h3></a>
+                            <a href="#"><h3>Sách Thiếu Nhi</h3></a>
+                        </div>
+                        <div class="content">
+                            <div class="top-content">
+                                <div class="left">
+                                    <div class="frame">
+                                        <div class="slider">
+                                            <div class="slide slide1"></div>
+                                            <div class="slide slide2"></div>
+                                            <div class="slide slide3"></div>
+                                            <div class="slide slide1"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="right">
+                                    <div class="box box1"></div>
+                                    <div class="box box2"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="product" class="page-content" style="display:none;">
+                    <h1>Tất Cả Sách Hay</h1>
+                    <div id="product-list" class="product-grid">
+                    </div>
+                </div>
+
+                <div id="product-detail" class="page-content" style="display:none;">
+                </div>
+
+                <div id="cart" class="page-content" style="display:none;">
+                    <h1>Giỏ Hàng Của Bạn</h1>
+                    <div id="cart-container" class="cart-container">
+                    </div>
+                </div>
+
+                <div id="shipping" class="page-content" style="display:none;">
+                    <h1>Thông Tin Giao Hàng</h1>
+                    <form id="shipping-form" class="checkout-form">
+                        <div class="form-group">
+                            <label for="fullname">Họ và tên:</label>
+                            <input type="text" id="fullname" class="form-control" placeholder="Nhập họ và tên" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Số điện thoại:</label>
+                            <input type="tel" id="phone" class="form-control" placeholder="Nhập số điện thoại" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input type="email" id="email" class="form-control" placeholder="example@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Địa chỉ:</label>
+                            <input type="text" id="address" class="form-control" placeholder="Số nhà, đường, phường/xã, quận/huyện, tỉnh/thành phố" required>
+                        </div>
+                        <button type="submit" id="btn-to-payment" class="btn">Hoàn tất</button>
+                    </form>
+                </div>
+
+                <div id="payment" class="page-content" style="display:none;">
+                    <h1>Xác Nhận & Thanh Toán</h1>
+                    <div class="payment-layout">
+                        <div class="payment-methods">
+                            <h3>Phương thức thanh toán</h3>
+                            <form id="payment-form">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="cod" value="COD" checked />
+                                    <label class="form-check-label" for="cod">Thanh toán khi nhận hàng (COD)</label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="paymentMethod" id="bank" value="BankTransfer" />
+                                    <label class="form-check-label" for="bank">Chuyển khoản ngân hàng</label>
+                                </div>
+                                <div id="bankInfo" style="display:none;">
+                                    <p><strong>Ngân hàng:</strong> Vietcombank</p>
+                                    <p><strong>Số tài khoản:</strong> 0123456789</p>
+                                    <p><strong>Chủ tài khoản:</strong> Tiệm Sách Passion</p>
+                                </div>
+                                <button type="submit" id="btn-complete-order" class="btn">Hoàn tất đặt hàng</button>
+                            </form>
+                        </div>
+                        <div id="order-summary-final" class="order-summary-box">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="about" class="page-content" style="display: none;">
+                    <div class="about-text">
+                        <h1>Về Passion</h1>
+                        <p>Xin chào bạn, người yêu sách!</p>
+                        <p>Tiệm Sách Passion không chỉ là một trang web bán sách. Giữa dòng đời vội vã, có một góc nhỏ bình yên nơi những tâm hồn đồng điệu tìm về, nơi mùi giấy mới và hương cà phê dịu nhẹ quyện vào nhau, tạo nên một bản giao hưởng của sự tĩnh lặng. Đó chính là Passion.</p>
+                        <p>Mình tin rằng mỗi cuốn sách là một thế giới, và mình muốn tạo ra một góc nhỏ ấm cúng trên Internet để mọi người có thể tìm thấy thế giới của riêng mình. Tên gọi "Tiệm Sách Passion" cũng xuất phát từ mong muốn đó - một nơi mộc mạc, gần gũi và bền vững với thời gian, giống như những cuốn sách hay.</p>
+                        <p>Cảm ơn bạn đã ghé thăm. Chúc bạn tìm được những cuốn sách ưng ý!</p>
+                    </div>
+                </div>
+
+                <div id="contact" class="page-content" style="display:none;">
+                    <h1>Gửi Lời Nhắn Cho Chúng Tớ Nhé!</h1>
+                    <div class="contact-layout">
+                        <form class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Họ và Tên:</label>
+                                <input type="text" id="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="contact-email">Email:</label>
+                                <input type="email" id="contact-email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Lời nhắn:</label>
+                                <textarea id="message" rows="6" required></textarea>
+                            </div>
+                            <button type="submit" class="btn-submit">Gửi Đi</button>
+                        </form>
+                        <div class="contact-info">
+                            <h3>Thông tin liên hệ</h3>
+                            <p><strong>Địa chỉ:</strong> 828 Đường Sách Nhỏ, Phường Diên, TP. Hồ Chí Minh</p>
+                            <p><strong>Email:</strong> XinChao@Passion.com</p>
+                            <p><strong>Điện thoại:</strong> 0123.456.789</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="signin" class="page-content" style="display:none;">
+                    <div class="form-container">
+                        <div class="form-toggle">
+                            <button id="login-toggle" class="active">Đăng nhập</button>
+                            <button id="register-toggle">Đăng ký</button>
+                        </div>
+                        <form id="login-form" class="form-content active">
+                            <h2>Chào mừng trở lại Passion!</h2>
+                            <div class="input-group">
+                                <label for="login-email">Email</label>
+                                <input type="email" id="login-email" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="login-password">Mật khẩu</label>
+                                <input type="password" id="login-password" required>
+                            </div>
+                            <button type="submit" class="btn">Đăng nhập</button>
+                        </form>
+                        <form id="register-form" class="form-content">
+                            <h2>Tạo tài khoản mới</h2>
+                            <div class="input-group">
+                                <label for="register-name">Họ và tên</label>
+                                <input type="text" id="register-name" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="register-email">Email</label>
+                                <input type="email" id="register-email" required>
+                            </div>
+                            <div class="input-group">
+                                <label for="register-password">Mật khẩu</label>
+                                <input type="password" id="register-password" required>
+                            </div>
+                            <button type="submit" class="btn">Đăng ký</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="site-footer">
+            <div class="container">
+                <p>&copy; 2025 Tiệm Sách Passion!</p>
+            </div>
+        </footer>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        // --- DỮ LIỆU MẪU ---
+        const products = [
+            { id: 1, name: 'Nhà Giả Kim', price: 79000, img: 'https://cdn0.fahasa.com/media/catalog/product/8/9/8935244862419.jpg', description: 'Một cuốn tiểu thuyết kinh điển về hành trình theo đuổi vận mệnh của chàng chăn cừu Santiago.' },
+            { id: 2, name: 'Đắc Nhân Tâm', price: 99000, img: 'https://cdn0.fahasa.com/media/catalog/product/d/a/dac-nhan-tam_bia_v2_1.jpg', description: 'Nghệ thuật thu phục lòng người và làm cho mọi người yêu quý mình.' },
+            { id: 3, name: 'Cây Cam Ngọt Của Tôi', price: 109000, img: 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_195509_1_41334.jpg', description: 'Câu chuyện cảm động về tuổi thơ của một cậu bé ở Brazil.' },
+            { id: 4, name: 'Tội Ác và Hình Phạt', price: 189000, img: 'https://cdn0.fahasa.com/media/catalog/product/t/o/toi-ac-va-hinh-phat---boxset-2-tap_1.jpg', description: 'Kiệt tác của văn học Nga, khám phá tâm lý tội phạm và sự chuộc lỗi.' },
+            { id: 5, name: 'Hoàng Tử Bé', price: 65000, img: 'https://cdn0.fahasa.com/media/catalog/product/z/3/z3359679809831_17c3756c523673327618e74a8167883d.jpg', description: 'Một câu chuyện triết lý dành cho mọi lứa tuổi về tình bạn và tình yêu.' },
+            { id: 6, name: '1984', price: 125000, img: 'https://cdn0.fahasa.com/media/catalog/product/i/m/image_235889.jpg', description: 'Cuốn tiểu thuyết phản địa đàng kinh điển về một xã hội bị kiểm soát toàn trị.' },
+            { id: 7, name: 'Rừng Na Uy', price: 150000, img: 'https://cdn0.fahasa.com/media/catalog/product/9/7/9786043398935.jpg', description: 'Câu chuyện tình yêu, mất mát và tuổi trẻ của Haruki Murakami.' },
+            { id: 8, name: 'Bố Già', price: 170000, img: 'https://cdn0.fahasa.com/media/catalog/product/b/o/bo-gia---mario-puzo---tb-2022.jpg', description: 'Tiểu thuyết kinh điển về thế giới ngầm của Mafia Ý tại Mỹ.' },
+            { id: 9, name: 'Muôn Kiếp Nhân Sinh', price: 200000, img: 'https://cdn0.fahasa.com/media/catalog/product/m/u/muon-kiep-nhan-sinh-tap-1---bia-mem---tái-bản-2022.jpg', description: 'Những câu chuyện về luật nhân quả và luân hồi qua nhiều kiếp sống.' },
+            { id: 10, name: 'Sapiens: Lược Sử Loài Người', price: 250000, img: 'https://cdn0.fahasa.com/media/catalog/product/8/9/8935251417382.jpg', description: 'Hành trình tiến hóa của loài người từ thời kỳ đồ đá đến nay.' },
+        ];
+        let cart = [];
+
+        // --- CÁC BIẾN DOM ---
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pageContents = document.querySelectorAll('.page-content');
+        const productListContainer = document.getElementById('product-list');
+        const productDetailContainer = document.getElementById('product-detail');
+        const cartContainer = document.getElementById('cart-container');
+        const cartCount = document.getElementById('cart-count');
+        const finalOrderSummaryContainer = document.getElementById('order-summary-final');
+
+        // --- CÁC HÀM RENDER ---
+        const renderProducts = () => {
+            if (!productListContainer) return;
+            productListContainer.innerHTML = '';
+            products.forEach(product => {
+                const productCard = document.createElement('div');
+                productCard.className = 'product-card';
+                productCard.innerHTML = `
+                <img src="${product.img}" alt="${product.name}">
+                <h3>${product.name}</h3>
+                <p class="price">${product.price.toLocaleString('vi-VN')} ₫</p>
+            `;
+                productCard.addEventListener('click', () => renderProductDetail(product.id));
+                productListContainer.appendChild(productCard);
+            });
+        };
+
+        const renderProductDetail = (productId) => {
+            const product = products.find(p => p.id === productId);
+            if (product && productDetailContainer) {
+                productDetailContainer.innerHTML = `
+                <div class="product-detail-layout">
+                    <div class="product-detail-image">
+                        <img src="${product.img}" alt="${product.name}">
+                    </div>
+                    <div class="product-detail-info">
+                        <h2>${product.name}</h2>
+                        <p class="price">${product.price.toLocaleString('vi-VN')} ₫</p>
+                        <p class="description">${product.description}</p>
+                        <button class="btn-add-to-cart" data-id="${product.id}">Thêm vào giỏ hàng</button>
+                    </div>
+                </div>
+            `;
+                showPage('product-detail');
+            }
+        };
+
+        const renderCart = () => {
+            if (!cartContainer) return;
+            if (cart.length === 0) {
+                cartContainer.innerHTML = `
+                <div class="cart-empty">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2038/2038854.png" alt="Empty Cart" />
+                    <p>Chưa có sản phẩm trong giỏ hàng của bạn.</p>
+                </div>`;
+            } else {
+                const tableRows = cart.map(item => `
+                <tr>
+                    <td><img src="${item.img}" alt="${item.name}" class="cart-img"/></td>
+                    <td class="fw-bold">${item.name}</td>
+                    <td>${item.price.toLocaleString('vi-VN')} ₫</td>
+                    <td class="text-center">${item.quantity}</td>
+                    <td class="text-danger fw-bold">${(item.price * item.quantity).toLocaleString('vi-VN')} ₫</td>
+                    <td class="text-center">
+                        <button class="btn-remove" data-id="${item.id}">Xóa</button>
+                    </td>
+                </tr>
+            `).join('');
+
+                const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+                cartContainer.innerHTML = `
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Hình ảnh</th>
+                                <th>Tên sản phẩm</th>
+                                <th>Giá</th>
+                                <th>Số lượng</th>
+                                <th>Thành tiền</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>${tableRows}</tbody>
+                    </table>
+                </div>
+                <div class="cart-summary">
+                    <h3>Tổng cộng: <span class="text-danger fw-bold">${totalPrice.toLocaleString('vi-VN')} ₫</span></h3>
+                    <a href="#shipping" class="btn-checkout nav-link">Thanh toán</a>
+                </div>`;
+            }
+            updateCartCount();
+        };
+
+        const renderFinalSummary = () => {
+            if (cart.length > 0 && finalOrderSummaryContainer) {
+                const name = document.getElementById('fullname').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+
+                const cartItemsHTML = cart.map(item => `
+                <p>${item.name} x ${item.quantity} <span>${(item.price * item.quantity).toLocaleString('vi-VN')} ₫</span></p>
+            `).join('');
+                const totalPrice = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+                finalOrderSummaryContainer.innerHTML = `
+                <h3>Tóm tắt đơn hàng</h3>
+                <div>
+                    <strong>Họ tên:</strong> ${name}<br>
+                    <strong>SĐT:</strong> ${phone}<br>
+                    <strong>Địa chỉ:</strong> ${address}
+                </div>
+                <hr>
+                ${cartItemsHTML}
+                <hr>
+                <h4><strong>Tổng cộng:</strong> <span class="text-danger">${totalPrice.toLocaleString('vi-VN')} ₫</span></h4>
+            `;
+            }
+        };
+
+        // --- HÀM CHỨC NĂNG ---
+        const showPage = (pageId) => {
+            pageContents.forEach(content => content.style.display = 'none');
+            const pageToShow = document.getElementById(pageId);
+            if (pageToShow) {
+                pageToShow.style.display = 'block';
+                window.scrollTo(0, 0);
+            }
+
+            navLinks.forEach(nav => {
+                nav.classList.remove('active');
+                const navHref = nav.getAttribute('href');
+                if (navHref && navHref === `#${pageId}`) {
+                    nav.classList.add('active');
+                }
+            });
+
+            if (pageId === 'cart') renderCart();
+        };
+
+        const addToCart = (productId) => {
+            const product = products.find(p => p.id === productId);
+            if (!product) return;
+
+            const cartItem = cart.find(item => item.id === productId);
+
+            if (cartItem) {
+                cartItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+            alert(`Đã thêm "${product.name}" vào giỏ hàng!`);
+            updateCartCount();
+        };
+
+        const removeFromCart = (productId) => {
+            cart = cart.filter(item => item.id !== productId);
+            renderCart();
+        };
+
+        const updateCartCount = () => {
+            if (!cartCount) return;
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+            cartCount.style.display = totalItems > 0 ? 'inline-block' : 'none';
+        };
+
+        // --- GẮN SỰ KIỆN ---
+        navLinks.forEach(link => {
+            link.addEventListener('click', function (event) {
+                const href = link.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    event.preventDefault();
+                    const pageId = href.substring(1);
+                    showPage(pageId);
+                }
+            });
+        });
+
+        document.body.addEventListener('click', function (event) {
+            if (event.target.classList.contains('btn-add-to-cart')) {
+                const productId = parseInt(event.target.dataset.id);
+                addToCart(productId);
+            }
+
+            if (event.target.classList.contains('btn-remove')) {
+                const productId = parseInt(event.target.dataset.id);
+                removeFromCart(productId);
+            }
+        });
+
+        const shippingForm = document.getElementById('shipping-form');
+        if (shippingForm) {
+            shippingForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                renderFinalSummary();
+                showPage('payment');
+            });
+        }
+
+        const paymentForm = document.getElementById('payment-form');
+        if (paymentForm) {
+            paymentForm.addEventListener('submit', function (event) {
+                event.preventDefault();
+                alert('🎉 Đặt hàng thành công! Cảm ơn bạn đã mua sắm tại Passion!');
+                cart = [];
+                renderCart();
+                shippingForm.reset();
+                showPage('home');
+            });
+        }
+
+        document.querySelectorAll('input[name="paymentMethod"]').forEach(elem => {
+            elem.addEventListener('change', function (event) {
+                const bankInfo = document.getElementById('bankInfo');
+                if (bankInfo) {
+                    bankInfo.style.display = event.target.value === 'BankTransfer' ? 'block' : 'none';
+                }
+            });
+        });
+
+        const loginToggle = document.getElementById('login-toggle');
+        const registerToggle = document.getElementById('register-toggle');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        if (loginToggle && registerToggle) {
+            loginToggle.addEventListener('click', () => {
+                loginToggle.classList.add('active');
+                registerToggle.classList.remove('active');
+                loginForm.classList.add('active');
+                registerForm.classList.remove('active');
+            });
+            registerToggle.addEventListener('click', () => {
+                registerToggle.classList.add('active');
+                loginToggle.classList.remove('active');
+                registerForm.classList.add('active');
+                loginForm.classList.remove('active');
+            });
+        }
+
+        // --- KHỞI TẠO ---
+        const init = () => {
+            renderProducts();
+            updateCartCount();
+            showPage('home');
+        };
+
+        init();
+    });
+</script>
+</body>
+</html>
